@@ -1,4 +1,4 @@
-from ch_2_02_anonymous_function import *
+from ch2_02_anonymous_function import *
 
 run_cases = [
     (
