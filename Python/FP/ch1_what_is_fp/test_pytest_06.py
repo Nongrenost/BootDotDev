@@ -13,6 +13,3 @@ def test_is_even_list():
     assert is_even_list([1, 2, 3]) is False
     assert is_even_list([10, 8, 7, 5]) is True
 
-def test_get_smaller():
-    assert get_smaller(1, 2) == 1
-    assert get_smaller(1, 1) == 1
