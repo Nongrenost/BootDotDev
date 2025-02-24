@@ -1,8 +1,7 @@
 def list_files(parent_directory, current_filepath=""):
     result = []
-    for key in parent_directory:
+    for key, value in parent_directory.items():
         new_path = f"{current_filepath}/{key}"
-        value = parent_directory.get(key)
         if value is None:
             result.append(new_path)
         else:
