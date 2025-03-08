@@ -1,4 +1,4 @@
-from ch1_01_sum_types import *
+from ch9_01_sum_type import *
 
 run_cases = [
     Parsed("why_fp.txt", "Because we're better than everyone else"),
