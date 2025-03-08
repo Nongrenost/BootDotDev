@@ -1,4 +1,4 @@
-from FP.ch1_what_is_fp.ch1_01_what_is_fp import *
+from ch1_01_what_is_fp import *
 
 run_cases = [
     (
