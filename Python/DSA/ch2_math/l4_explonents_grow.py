@@ -1,8 +1,9 @@
 def get_follower_prediction(follower_count, influencer_type, num_months):
+    factor = 2
     if influencer_type == "fitness":
-        return follower_count * (4 ** num_months)
-    elif influencer_type == "cosmetic":
-        return follower_count * (3 ** num_months)
-    else:
-        return follower_count * (2 ** num_months)
+        factor = 4
+    if influencer_type == "cosmetic":
+        factor = 3
+    
+    return follower_count * (factor ** num_months)
     
