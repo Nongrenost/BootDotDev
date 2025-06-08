@@ -10,4 +10,3 @@ def binary_search(target, arr):
         else:
             high = median - 1
     return False 
-        
