@@ -1,31 +1,25 @@
 def merge_sort(nums):
     if len(nums) < 2:
         return nums
-    start = 0
-    median = len(nums) // 2
-    first = merge_sort(nums[start:median])
-    second = merge_sort(nums[median:len(nums)])
-    
-    return merge(first, second)
-       
-
+    mid = len(nums) // 2
+    return merge(merge_sort(nums[:mid]),
+				merge_sort(nums[mid:]))
+	
 def merge(first, second):
     final = []
     i = 0
     j = 0
-    looping = True
-    while (looping):        
-        if i >= (len(first)) or j >= len(second):
-            looping = False
-            continue
+    while i < len(first) and j < len(second):
         if first[i] <= second[j]:
             final.append(first[i])
-            i+=1
+            i += 1
         else:
             final.append(second[j])
-            j+=1
-    
-    if i >= len(first):
-        return final + second[j:]
-    if j >= len(second):
-        return final + first[i:]        
+            j += 1
+    while i < len(first):
+        final.append(first[i])
+        i += 1
+    while j < len(second):
+        final.append(second[j])
+        j += 1
+    return final
