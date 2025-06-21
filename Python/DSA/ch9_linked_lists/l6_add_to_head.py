@@ -1,18 +1,22 @@
-from l5_node import Node
+from l6_node import Node
 
 
 class LinkedList:
+    def add_to_head(self, node):
+        old_head = self.head
+        self.head = node
+        node.set_next(old_head)
+
+    # don't touch below this line
+
     def add_to_tail(self, node):
         if self.head is None:
             self.head = node
-        else:
-            tail = None
-            for next_node in self:
-                tail = next_node
-            tail.set_next(node)
-               
-
-    # don't touch below this line
+            return
+        last_node = None
+        for current_node in self:
+            last_node = current_node
+        last_node.set_next(node)
 
     def __init__(self):
         self.head = None
