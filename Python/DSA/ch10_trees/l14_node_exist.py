@@ -2,15 +2,13 @@ class BSTNode:
     def exists(self, val):
         if self.val is None:
             return False
-        if val < self.val:
-            if self.left:
-                return self.left.exists(val)
-            return False
-        if val > self.val:
-            if self.right:
-                return self.right.exists(val)
-            return False
-        return True
+        if self.val == val:
+            return True
+        if val < self.val and self.left:
+            return self.left.exists(val)
+        if val > self.val and self.right:
+            return self.right.exists(val)
+        return False
 
         # don't touch below this line
 

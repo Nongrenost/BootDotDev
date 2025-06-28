@@ -17,7 +17,7 @@ class BSTNode:
                 return self.left
             if self.left is None:
                 return self.right
-            
+                
         
         successor = self.right
         while successor.left:
