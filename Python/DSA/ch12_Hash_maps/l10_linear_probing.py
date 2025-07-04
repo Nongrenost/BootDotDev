@@ -13,7 +13,7 @@ class HashMap:
             except IndexError:
                 index = index % len(self.hashmap)
                 
-            first_iteration == False
+            first_iteration = False
             
         self.hashmap[index] = (key, value)
 
