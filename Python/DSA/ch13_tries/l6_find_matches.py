@@ -10,7 +10,7 @@ class Trie:
                     break
                 current_level = current_level[document[i]]
                 if self.end_symbol in current_level:
-                    matches.add(''.join(document[index:i+1]))
+                    matches.add(document[index:i+1])
         return matches
             
 
