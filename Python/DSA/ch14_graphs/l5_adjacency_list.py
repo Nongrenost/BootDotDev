@@ -1,19 +1,14 @@
 class Graph:
     def __init__(self):
         self.graph = {}
-        
-        
 
     def add_edge(self, u, v):
         if u not in self.graph: 
-            self.graph[u] = set([v])
-        else:
-            self.graph[u].add(v)
+            self.graph[u] = set()
         if v not in self.graph:
-            self.graph[v] = set([u])
-        else:
-            self.graph[v].add(u)
-
+            self.graph[v] = set()
+        self.graph[u].add(v)
+        self.graph[v].add(u)
     # don't touch below this line
 
     def edge_exists(self, u, v):
