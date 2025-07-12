@@ -9,7 +9,7 @@ class Graph:
             
             first_in_queue = to_be_explored[0]
             visited.append(first_in_queue)
-            to_be_explored = to_be_explored[1:]
+            del to_be_explored[0]
 
             neighbours = sorted(self.graph[first_in_queue])
             for neighbour in neighbours:
