@@ -2,11 +2,13 @@
 #include <stdlib.h>
 
 stack_t *stack_new(size_t capacity) {
-    stack_t *stack = malloc(sizeof(stVack_t));
-    if (stack == NULL) { exit(1); }
+    stack_t *stack = malloc(sizeof(stack_t));
+    if (stack == NULL) { return NULL; }
 
     void **data_pointer = malloc(sizeof(void*) * capacity);
-    if (data_pointer == NULL) { exit(1); }
+    if (data_pointer == NULL) {
+        free(stack);
+        return NULL; }
 
     stack->count = 0;
     stack->capacity = capacity;
