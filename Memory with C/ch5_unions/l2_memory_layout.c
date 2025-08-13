@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 #include "limits.h"
-#include "munit.h"
 
 typedef union {
   int value;
