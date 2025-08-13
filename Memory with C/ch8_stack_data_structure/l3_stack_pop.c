@@ -1,21 +1,32 @@
-#include "l2_snekstack.h"
+#include "l3_snekstack.h"
 #include <assert.h>
 #include <stddef.h>
 #include <stdlib.h>
 
+void *stack_pop(stack_t *stack) {
+  if (stack->count == 0) {
+    return NULL;
+  }
+  stack->count--;
+  return stack->data[stack->count];
+}
+
+// don't touch below this line'
+
 void stack_push(stack_t *stack, void *obj) {
   if (stack->count == stack->capacity) {
     stack->capacity *= 2;
-    void **doubled = realloc(stack->data, sizeof(void*) * stack->capacity);
-    if (doubled == NULL) {
-        stack->capacity /= 2;
-        exit(1);
+    void **temp = realloc(stack->data, stack->capacity * sizeof(void *));
+    if (temp == NULL) {
+      stack->capacity /= 2;
+
+      exit(1);
     }
-    stack->data = doubled;
+    stack->data = temp;
   }
-    stack->data[stack->count] = obj;
-    stack->count++;
-    return;
+  stack->data[stack->count] = obj;
+  stack->count++;
+  return;
 }
 
 stack_t *stack_new(size_t capacity) {
@@ -23,6 +34,7 @@ stack_t *stack_new(size_t capacity) {
   if (stack == NULL) {
     return NULL;
   }
+
   stack->count = 0;
   stack->capacity = capacity;
   stack->data = malloc(stack->capacity * sizeof(void *));
@@ -30,5 +42,6 @@ stack_t *stack_new(size_t capacity) {
     free(stack);
     return NULL;
   }
+
   return stack;
 }
