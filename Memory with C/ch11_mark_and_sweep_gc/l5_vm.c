@@ -1,10 +1,17 @@
-#include "l4_vm.h"
-#include "l4_snekobject.h"
-#include "l4_stack.h"
+#include "l5_vm.h"
+#include "l5_stack.h"
 
-void vm_track_object(vm_t *vm, snek_object_t *obj) {
-  if (vm == NULL || obj == NULL) { return; }
-  stack_push(vm->objects, obj);
+void vm_free(vm_t *vm) {
+  if (vm == NULL) { return; }
+  for (int i = 0; i < vm->frames->count; i++) {
+    frame_free(vm->frames->data[i]);
+  }
+  stack_free(vm->frames);
+  for (int i = 0; i < vm->objects->count;) {
+    snek_object_free(vm->objects->data[i]);
+  }
+  stack_free(vm->objects);
+  free(vm);
 }
 
 // don't touch below this line
@@ -20,13 +27,8 @@ vm_t *vm_new() {
   return vm;
 }
 
-void vm_free(vm_t *vm) {
-  for (int i = 0; i < vm->frames->capacity; i++) {
-    frame_free(vm->frames->data[i]);
-  }
-  stack_free(vm->frames);
-  stack_free(vm->objects);
-  free(vm);
+void vm_track_object(vm_t *vm, snek_object_t *obj) {
+  stack_push(vm->objects, obj);
 }
 
 void vm_frame_push(vm_t *vm, frame_t *frame) {
