@@ -1,9 +1,9 @@
 package l2
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
-	"encoding/json"
 )
 
 func getIssues(url string) ([]Issue, error) {
@@ -13,7 +13,7 @@ func getIssues(url string) ([]Issue, error) {
 	}
 	defer res.Body.Close()
 
-	issues := []Issue{}
+	var issues []Issue
 
 	decoder := json.NewDecoder(res.Body)
 
@@ -23,4 +23,3 @@ func getIssues(url string) ([]Issue, error) {
 	}
 	return issues, nil
 }
-
